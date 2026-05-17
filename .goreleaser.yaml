@@ -55,39 +55,10 @@ brews:
     description: Operational workflow and environment diagnostics tool for AWS engineers.
     license: MIT
     commit_msg_template: "Brew formula update for awsmgr version {{ .Tag }}"
-    formula: |
-      class Awsmgr < Formula
-        desc "Operational workflow and environment diagnostics CLI for AWS engineers"
-        homepage "https://github.com/santhosh-john/awsmgr"
-        license "MIT"
-        version "{{ .Version }}"
-        
-        if OS.mac?
-          if Hardware::CPU.arm?
-            url "https://github.com/santhosh-john/awsmgr/releases/download/{{ .Tag }}/awsmgr_{{ .Version }}_darwin_arm64.tar.gz"
-            sha256 "{{ index .Checksums "awsmgr_darwin_arm64.tar.gz" }}"
-          else
-            url "https://github.com/santhosh-john/awsmgr/releases/download/{{ .Tag }}/awsmgr_{{ .Version }}_darwin_amd64.tar.gz"
-            sha256 "{{ index .Checksums "awsmgr_darwin_amd64.tar.gz" }}"
-          end
-        elsif OS.linux?
-          if Hardware::CPU.arm?
-            url "https://github.com/santhosh-john/awsmgr/releases/download/{{ .Tag }}/awsmgr_{{ .Version }}_linux_arm64.tar.gz"
-            sha256 "{{ index .Checksums "awsmgr_linux_arm64.tar.gz" }}"
-          else
-            url "https://github.com/santhosh-john/awsmgr/releases/download/{{ .Tag }}/awsmgr_{{ .Version }}_linux_amd64.tar.gz"
-            sha256 "{{ index .Checksums "awsmgr_linux_amd64.tar.gz" }}"
-          end
-        end
-      
-        def install
-          bin.install "awsmgr"
-        end
-      
-        def test
-          system bin/"awsmgr", "help"
-        end
-      end
+    install: |
+      bin.install "awsmgr"
+    test: |
+      system bin/"awsmgr", "help"
 
 release:
   draft: false
