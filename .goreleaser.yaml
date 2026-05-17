@@ -51,7 +51,6 @@ brews:
     repository:
       owner: santhosh-john
       name: homebrew-tap
-    folder: Formula
     homepage: https://github.com/santhosh-john/awsmgr
     description: Operational workflow and environment diagnostics tool for AWS engineers.
     license: MIT
