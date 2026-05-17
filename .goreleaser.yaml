@@ -4,63 +4,93 @@ project_name: awsmgr
 
 before:
   hooks:
-    - git config --global user.email "nimpossible2020@gmail.com"
-    - git config --global user.name "Santhosh John"
     - go mod tidy
 
 builds:
   - id: awsmgr
+
     main: .
+
     binary: awsmgr
+
     env:
       - CGO_ENABLED=0
+
     goos:
-      - darwin
       - linux
+      - darwin
       - windows
+
     goarch:
-      - arm64
       - amd64
+      - arm64
+
     ignore:
       - goos: windows
         goarch: arm64
+
     flags:
       - -trimpath
+
     ldflags:
-      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}}
+      - >-
+        -s -w
+        -X main.version={{ .Version }}
+        -X main.commit={{ .Commit }}
+        -X main.date={{ .Date }}
 
 archives:
   - id: default
-    formats: [tar.gz]
+
+    formats:
+      - tar.gz
+
     format_overrides:
       - goos: windows
-        formats: [zip]
+        formats:
+          - zip
 
 checksum:
   name_template: checksums.txt
 
 changelog:
   sort: asc
+
   filters:
     exclude:
-      - '^docs:'
-      - '^test:'
-
-brews:
-  - name: awsmgr
-    repository:
-      owner: santhosh-john
-      name: homebrew-tap
-    homepage: https://github.com/santhosh-john/awsmgr
-    description: Operational workflow and environment diagnostics tool for AWS engineers.
-    license: MIT
-    commit_msg_template: "Brew formula update for awsmgr version {{ .Tag }}"
-    install: |
-      bin.install "awsmgr"
-    test: |
-      system bin/"awsmgr", "help"
+      - "^docs:"
+      - "^test:"
+      - "^chore:"
+      - "^ci:"
 
 release:
   draft: false
   prerelease: auto
 
+brews:
+  - name: awsmgr
+
+    repository:
+      owner: santhosh-john
+      name: homebrew-tap
+      token: "{{ .Env.HOMEBREW_GITHUB_TOKEN }}"
+
+    directory: Formula
+
+    homepage: "https://github.com/santhosh-john/awsmgr"
+
+    description: "Operational workflow and environment diagnostics tool for AWS engineers."
+
+    license: "MIT"
+
+    commit_author:
+      name: github-actions[bot]
+      email: github-actions[bot]@users.noreply.github.com
+
+    commit_msg_template: "brew: update awsmgr to {{ .Tag }}"
+
+    install: |
+      bin.install "awsmgr"
+
+    test: |
+      system "#{bin}/awsmgr", "help"
