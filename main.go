@@ -115,12 +115,16 @@ func runDoctor(ctx context.Context) error {
 }
 
 func printUsage() {
-	fmt.Fprintf(stdout, `%sawsmgr%s - Operational workflow and environment diagnostics.
+	title := "awsmgr"
+	if ui.IsTerminal() {
+		title = ui.ApplyColor(ui.ColorCyan+ui.ColorBold, title)
+	}
+	fmt.Fprintf(stdout, `%s - Operational workflow and environment diagnostics.
 
 Usage:
   awsmgr list
   awsmgr current
   awsmgr validate
   awsmgr doctor
-`, ui.ColorCyan+ui.ColorBold, ui.ColorReset)
+`, title)
 }

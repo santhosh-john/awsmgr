@@ -42,6 +42,8 @@ make build
 ./bin/awsmgr doctor
 ```
 
+## Current Version: 1.0.2
+
 `validate` and `doctor` call local tools such as `aws`, `kubectl`, and `terraform`, so their results depend on your workstation configuration and active credentials.
 
 ## Author
