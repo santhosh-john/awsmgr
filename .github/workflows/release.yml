@@ -3,7 +3,7 @@ name: Release Tooling
 on:
   push:
     tags:
-      - 'v*'
+      - "v*"
 
 permissions:
   contents: write
@@ -11,29 +11,34 @@ permissions:
 jobs:
   goreleaser:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout Code Base
+      - name: Checkout Repository
         uses: actions/checkout@v4
         with:
           fetch-depth: 0
 
-      - name: Setup Go Runtime Architecture
+      - name: Setup Go
         uses: actions/setup-go@v5
         with:
-          go-version: '1.26'
+          go-version-file: go.mod
           cache: true
 
-      - name: Configure Git for Commits
+      - name: Configure Git Identity
         run: |
-          git config --global user.email "nimpossible2020@gmail.com"
-          git config --global user.name "Santhosh John"
-          git remote set-url origin https://x-access-token:${{ secrets.HOMEBREW_GITHUB_TOKEN }}@github.com/santhosh-john/awsmgr.git
+          git config --global user.email "github-actions[bot]@users.noreply.github.com"
+          git config --global user.name "github-actions[bot]"
 
-      - name: Run GoReleaser Execution
+      - name: Verify Go Modules
+        run: go mod tidy
+
+      - name: Run GoReleaser
         uses: goreleaser/goreleaser-action@v5
         with:
           distribution: goreleaser
-          version: v2.15.4
+          version: "~> v2"
           args: release --clean
+
         env:
-          GITHUB_TOKEN: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          HOMEBREW_TAP_TOKEN: ${{ secrets.HOMEBREW_GITHUB_TOKEN }}
