@@ -1,0 +1,14 @@
+# Binaries
+bin/
+dist/
+awsmgr
+
+# OS files
+.DS_Store
+
+# Development
+.ini
+coverage.out
+.env
+.env.*
+!.env.example

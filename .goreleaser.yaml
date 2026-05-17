@@ -1,0 +1,59 @@
+version: 2
+
+project_name: awsmgr
+
+before:
+  hooks:
+    - go mod tidy
+
+builds:
+  - id: awsmgr
+    main: .
+    binary: awsmgr
+    env:
+      - CGO_ENABLED=0
+    goos:
+      - darwin
+      - linux
+      - windows
+    goarch:
+      - arm64
+      - amd64
+    ignore:
+      - goos: windows
+        goarch: arm64
+    flags:
+      - -trimpath
+    ldflags:
+      - -s -w -X main.version={{.Version}} -X main.commit={{.Commit}}
+
+archives:
+  - id: default
+    formats: [tar.gz]
+    format_overrides:
+      - goos: windows
+        formats: [zip]
+
+checksum:
+  name_template: checksums.txt
+
+changelog:
+  sort: asc
+  filters:
+    exclude:
+      - '^docs:'
+      - '^test:'
+
+brews:
+  - name: awsmgr
+    repository:
+      owner: 
+  prerelease: autosanthoshjohn
+      name: homebrew-tap
+    homepage: https://github.com/santhoshjohn/awsmgr
+    description: Operational workflow and environment diagnostics tool for AWS engineers.
+    license: MIT
+
+release:
+  draft: true
+
