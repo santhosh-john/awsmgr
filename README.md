@@ -46,7 +46,7 @@ make build
 
 ## Author
 
-**Santhosh John** - [GitHub](https://github.com/santhoshjohn)
+**Santhosh John** - [GitHub](https://github.com/santhosh-john)
 
 ## License
 
