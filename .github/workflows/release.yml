@@ -23,6 +23,12 @@ jobs:
           go-version: '1.26'
           cache: true
 
+      - name: Configure Git for Commits
+        run: |
+          git config --global user.email "nimpossible2020@gmail.com"
+          git config --global user.name "Santhosh John"
+          git remote set-url origin https://x-access-token:${{ secrets.HOMEBREW_GITHUB_TOKEN }}@github.com/santhosh-john/awsmgr.git
+
       - name: Run GoReleaser Execution
         uses: goreleaser/goreleaser-action@v5
         with:

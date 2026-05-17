@@ -4,6 +4,8 @@ project_name: awsmgr
 
 before:
   hooks:
+    - git config --global user.email "nimpossible2020@gmail.com"
+    - git config --global user.name "Santhosh John"
     - go mod tidy
 
 builds:
@@ -54,6 +56,6 @@ brews:
     license: MIT
 
 release:
-  draft: true
+  draft: false
   prerelease: auto
 
