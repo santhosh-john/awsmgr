@@ -47,13 +47,13 @@ changelog:
 brews:
   - name: awsmgr
     repository:
-      owner: 
-  prerelease: autosanthoshjohn
+      owner: santhosh-john
       name: homebrew-tap
-    homepage: https://github.com/santhoshjohn/awsmgr
+    homepage: https://github.com/santhosh-john/awsmgr
     description: Operational workflow and environment diagnostics tool for AWS engineers.
     license: MIT
 
 release:
   draft: true
+  prerelease: auto
 

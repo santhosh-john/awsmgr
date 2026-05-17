@@ -7,10 +7,10 @@ import (
 	"strings"
 	"time"
 
-	"github.com/santhoshjohn/awsmgr/internal/aws"
-	"github.com/santhoshjohn/awsmgr/internal/kube"
-	"github.com/santhoshjohn/awsmgr/internal/network"
-	"github.com/santhoshjohn/awsmgr/internal/terraform"
+	"github.com/santhosh-john/awsmgr/internal/aws"
+	"github.com/santhosh-john/awsmgr/internal/kube"
+	"github.com/santhosh-john/awsmgr/internal/network"
+	"github.com/santhosh-john/awsmgr/internal/terraform"
 )
 
 const stepTimeout = 8 * time.Second

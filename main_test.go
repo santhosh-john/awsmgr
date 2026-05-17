@@ -9,8 +9,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/santhoshjohn/awsmgr/internal/aws"
-	"github.com/santhoshjohn/awsmgr/internal/doctor"
+	"github.com/santhosh-john/awsmgr/internal/aws"
+	"github.com/santhosh-john/awsmgr/internal/doctor"
 )
 
 func TestRunPrintsUsageWhenNoArgs(t *testing.T) {

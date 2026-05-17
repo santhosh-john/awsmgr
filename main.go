@@ -15,9 +15,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/santhoshjohn/awsmgr/internal/aws"
-	"github.com/santhoshjohn/awsmgr/internal/doctor"
-	"github.com/santhoshjohn/awsmgr/internal/ui"
+	"github.com/santhosh-john/awsmgr/internal/aws"
+	"github.com/santhosh-john/awsmgr/internal/doctor"
+	"github.com/santhosh-john/awsmgr/internal/ui"
 )
 
 const commandTimeout = 30 * time.Second

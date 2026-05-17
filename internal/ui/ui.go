@@ -3,7 +3,7 @@ package ui
 import (
 	"fmt"
 
-	"github.com/santhoshjohn/awsmgr/internal/doctor"
+	"github.com/santhosh-john/awsmgr/internal/doctor"
 )
 
 const (
