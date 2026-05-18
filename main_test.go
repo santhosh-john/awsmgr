@@ -22,7 +22,7 @@ func TestRunPrintsUsageWhenNoArgs(t *testing.T) {
 	}
 
 	got := stdoutBuf.String()
-	if !strings.Contains(got, "Usage:") || !strings.Contains(got, "awsmgr doctor") {
+	if !strings.Contains(got, "Usage:") || !strings.Contains(got, "doctor     Run workstation diagnostics") {
 		t.Fatalf("run(nil) output = %q, want usage text", got)
 	}
 }
@@ -35,8 +35,34 @@ func TestRunPrintsUsageForHelp(t *testing.T) {
 		t.Fatalf("run(--help) error = %v, want nil", err)
 	}
 
-	if got := stdoutBuf.String(); !strings.Contains(got, "awsmgr current") {
+	if got := stdoutBuf.String(); !strings.Contains(got, "current    Print the active AWS profile") {
 		t.Fatalf("run(--help) output = %q, want usage text", got)
+	}
+}
+
+func TestRunPrintsVersion(t *testing.T) {
+	stdoutBuf, restore := stubCLI(t)
+	defer restore()
+
+	previousVersion := version
+	previousCommit := commit
+	previousDate := date
+	version = "1.2.3"
+	commit = "abc123"
+	date = "2026-05-18T10:00:00Z"
+	defer func() {
+		version = previousVersion
+		commit = previousCommit
+		date = previousDate
+	}()
+
+	if err := run([]string{"version"}); err != nil {
+		t.Fatalf("run(version) error = %v, want nil", err)
+	}
+
+	want := "awsmgr 1.2.3\ncommit: abc123\nbuilt: 2026-05-18T10:00:00Z\n"
+	if got := stdoutBuf.String(); got != want {
+		t.Fatalf("run(version) output = %q, want %q", got, want)
 	}
 }
 

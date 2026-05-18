@@ -42,6 +42,12 @@ builds:
 archives:
   - id: default
 
+    name_template: >-
+      {{ .ProjectName }}_
+      {{- title .Os }}_
+      {{- if eq .Arch "amd64" }}x86_64
+      {{- else }}{{ .Arch }}{{ end }}
+
     formats:
       - tar.gz
 
@@ -93,4 +99,4 @@ brews:
       bin.install "awsmgr"
 
     test: |
-      system "#{bin}/awsmgr", "help"
+      system "#{bin}/awsmgr", "version"

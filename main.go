@@ -23,6 +23,10 @@ import (
 const commandTimeout = 30 * time.Second
 
 var (
+	version = "dev"
+	commit  = "unknown"
+	date    = "unknown"
+
 	stdout            io.Writer = os.Stdout
 	stderr            io.Writer = os.Stderr
 	loadProfiles                = aws.LoadProfiles
@@ -58,6 +62,9 @@ func run(args []string) error {
 		return runValidate(ctx)
 	case "doctor":
 		return runDoctor(ctx)
+	case "version", "-v", "--version":
+		printVersion()
+		return nil
 	case "help", "-h", "--help":
 		printUsage()
 		return nil
@@ -114,6 +121,10 @@ func runDoctor(ctx context.Context) error {
 	return nil
 }
 
+func printVersion() {
+	fmt.Fprintf(stdout, "awsmgr %s\ncommit: %s\nbuilt: %s\n", version, commit, date)
+}
+
 func printUsage() {
 	title := "awsmgr"
 	if ui.IsTerminal() {
@@ -122,9 +133,18 @@ func printUsage() {
 	fmt.Fprintf(stdout, `%s - Operational workflow and environment diagnostics.
 
 Usage:
-  awsmgr list
-  awsmgr current
-  awsmgr validate
-  awsmgr doctor
+  awsmgr <command>
+
+Commands:
+  list       List AWS profiles discovered by AWS CLI configuration
+  current    Print the active AWS profile from the local environment
+  validate   Validate AWS profile sessions with aws sts get-caller-identity
+  doctor     Run workstation diagnostics for AWS, Kubernetes, Terraform, and network access
+  version    Print build version information
+  help       Show this help text
+
+Options:
+  -h, --help      Show this help text
+  -v, --version   Print build version information
 `, title)
 }
