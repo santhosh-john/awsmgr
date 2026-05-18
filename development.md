@@ -1,3 +1,8 @@
+---
+layout: default
+title: Development
+---
+
 # Development
 
 ## Local Checks
@@ -59,9 +64,3 @@ Run the local macOS ARM64 release binary:
 ./dist/awsmgr_darwin_arm64_v8.0/awsmgr version
 ```
 
-## More
-
-See:
-
-- Release guide: https://github.com/santhosh-john/awsmgr/blob/main/RELEASE.md
-- Website and documentation guide: https://github.com/santhosh-john/awsmgr/blob/main/DOCS_WEBSITE.md

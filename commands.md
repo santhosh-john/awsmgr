@@ -1,3 +1,8 @@
+---
+layout: default
+title: Commands
+---
+
 # Commands
 
 ## `awsmgr list`

@@ -1,3 +1,8 @@
+---
+layout: default
+title: Release Notes
+---
+
 # Release Notes
 
 Release notes are published with GitHub releases.

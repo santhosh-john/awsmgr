@@ -1,11 +1,17 @@
+---
+layout: default
+title: Home
+---
 # awsmgr
 
-`awsmgr` is an operational workflow and environment diagnostics CLI for
+<p class="lead">
+An operational workflow and environment diagnostics CLI for
 engineers working with AWS SSO, multiple AWS profiles, Kubernetes/EKS,
 Terraform, and enterprise network environments.
 
 It does not replace AWS CLI. AWS CLI remains the source of truth for
 authentication, SSO, credentials, and profile resolution.
+</p>
 
 ## Install
 
@@ -31,8 +37,3 @@ awsmgr help
 - [Troubleshooting](troubleshooting.html)
 - [Development](development.html)
 - [Release notes](release-notes.html)
-
-## Source
-
-- GitHub: https://github.com/santhosh-john/awsmgr
-- Homebrew tap: https://github.com/santhosh-john/homebrew-tap

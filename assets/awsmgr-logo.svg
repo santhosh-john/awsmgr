@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 760 180" role="img" aria-labelledby="title desc">
+  <defs>
+    <linearGradient id="brand" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#38BDF8" />
+      <stop offset="100%" stop-color="#2563EB" />
+    </linearGradient>
+
+    <linearGradient id="accent" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0%" stop-color="#5EEAD4" />
+      <stop offset="100%" stop-color="#14B8A6" />
+    </linearGradient>
+
+    <filter id="glow">
+      <feGaussianBlur stdDeviation="8" result="coloredBlur" />
+      <feMerge>
+        <feMergeNode in="coloredBlur" />
+        <feMergeNode in="SourceGraphic" />
+      </feMerge>
+    </filter>
+  </defs>
+
+  <rect width="760" height="180" fill="transparent" />
+
+  <g transform="translate(28 26)">
+    <rect width="128" height="128" rx="30" fill="#0B1220" />
+
+    <circle cx="42" cy="42" r="10" fill="#5EEAD4" filter="url(#glow)" />
+    <circle cx="42" cy="92" r="10" fill="#38BDF8" filter="url(#glow)" />
+    <circle cx="92" cy="67" r="12" fill="url(#brand)" filter="url(#glow)" />
+
+    <path
+      d="M52 42H78L92 57M52 92H78L92 77"
+      fill="none"
+      stroke="url(#accent)"
+      stroke-width="6"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+
+    <path
+      d="M30 67H66"
+      stroke="#E2E8F0"
+      stroke-width="7"
+      stroke-linecap="round"
+    />
+
+    <path
+      d="M58 54L74 67L58 80"
+      fill="none"
+      stroke="#E2E8F0"
+      stroke-width="7"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+    />
+  </g>
+
+  <g>
+    <text
+      x="190"
+      y="92"
+      font-family="Inter, system-ui, sans-serif"
+      font-size="66"
+      font-weight="780"
+      fill="#0F172A"
+      letter-spacing="-1.5"
+    >
+      awsmgr
+    </text>
+
+    <text
+      x="193"
+      y="128"
+      font-family="Inter, system-ui, sans-serif"
+      font-size="20"
+      font-weight="520"
+      fill="#475569"
+      letter-spacing="0.2"
+    >
+      AWS workflow and environment diagnostics
+    </text>
+  </g>
+</svg>

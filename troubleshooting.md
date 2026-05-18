@@ -1,3 +1,8 @@
+---
+layout: default
+title: Troubleshooting
+---
+
 # Troubleshooting
 
 ## Homebrew Download Returns 404
@@ -9,15 +14,6 @@ exact name used by the formula.
 brew update
 brew cat santhosh-john/tap/awsmgr
 ```
-
-Then compare the formula URL with the GitHub release assets:
-
-```bash
-gh release view vX.Y.Z --repo santhosh-john/awsmgr --json assets \
-  --jq '.assets[].name'
-```
-
-GitHub release asset names are case-sensitive.
 
 ## AWS Profiles Are Missing
 

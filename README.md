@@ -81,10 +81,37 @@ git push origin docs-vYYYY.MM.DD.1
 
 ## Local Review
 
-The docs are plain Markdown. Review them directly in your editor or through
-GitHub's Markdown preview.
+The GitHub Pages site uses Jekyll. Do not use the macOS system Ruby; it is too
+old for current GitHub Pages dependencies.
 
-If you want to preview them with a local static server:
+Install Ruby 3.3 with Homebrew. Do not use Ruby 4 for GitHub Pages preview;
+the `github-pages` gem currently uses Jekyll 3.9.x, which is not Ruby 4-ready.
+
+```bash
+brew install ruby@3.3
+export PATH="/opt/homebrew/opt/ruby@3.3/bin:$PATH"
+ruby -v
+```
+
+The Ruby version should be `3.3.x`.
+
+Install dependencies and run the site:
+
+```bash
+cd docs
+gem install bundler
+rm -f Gemfile.lock
+bundle install
+bundle exec jekyll serve --baseurl /awsmgr
+```
+
+Then open:
+
+```text
+http://127.0.0.1:4000/awsmgr/
+```
+
+For a quick Markdown-only preview without Jekyll layout rendering:
 
 ```bash
 cd docs
