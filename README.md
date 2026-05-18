@@ -22,6 +22,11 @@ or:
 go build -o bin/awsmgr .
 ```
 
+## Installation via Homebrew (macOS)
+```bash
+brew install santhosh-john/tap/awsmgr
+```
+
 ## Commands
 
 ```bash
