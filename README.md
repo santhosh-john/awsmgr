@@ -90,6 +90,12 @@ release workflow can publish that SemVer version.
 See [RELEASE.md](RELEASE.md) for the full commit, tagging, release, and rollback
 workflow.
 
+See [DOCS_WEBSITE.md](DOCS_WEBSITE.md) for the GitHub Pages, Go documentation,
+and separate documentation release workflow.
+
+See [docs/README.md](docs/README.md) for the step-by-step GitHub Pages publishing
+checklist.
+
 ## Info
 
 `validate` and `doctor` call local tools such as `aws`, `kubectl`, and `terraform`, so their results depend on your workstation configuration and active credentials.

@@ -1,0 +1,60 @@
+name: Docs Pages
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - "docs/**"
+      - "DOCS_WEBSITE.md"
+      - "README.md"
+      - ".github/workflows/docs-pages.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: docs-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout main
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Prepare site
+        run: |
+          rm -rf /tmp/awsmgr-site
+          mkdir -p /tmp/awsmgr-site
+          cp -R docs/. /tmp/awsmgr-site/
+
+      - name: Configure git
+        run: |
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git config user.name "github-actions[bot]"
+
+      - name: Publish to gh-pages
+        run: |
+          if git ls-remote --exit-code --heads origin gh-pages >/dev/null 2>&1; then
+            git fetch origin gh-pages:gh-pages
+            git switch gh-pages
+          else
+            git switch --orphan gh-pages
+          fi
+
+          git rm -rf . >/dev/null 2>&1 || true
+          cp -R /tmp/awsmgr-site/. .
+
+          git add .
+          if git diff --cached --quiet; then
+            echo "No documentation changes to publish."
+            exit 0
+          fi
+
+          git commit -m "docs: publish GitHub Pages"
+          git push origin gh-pages
