@@ -73,7 +73,7 @@ brews:
     repository:
       owner: santhosh-john
       name: homebrew-tap
-      token: "{{ .Env.HOMEBREW_GITHUB_TOKEN }}"
+      # token: "{{ .Env.HOMEBREW_GITHUB_TOKEN }}"
 
     directory: Formula
 
